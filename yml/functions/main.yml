@@ -1,0 +1,5 @@
+functions:
+  - ${file(./yml/functions/createAuction.yml)}
+  - ${file(./yml/functions/getAuctions.yml)}
+  - ${file(./yml/functions/getAuction.yml)}
+  - ${file(./yml/functions/placeBid.yml)}

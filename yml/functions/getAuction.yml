@@ -1,0 +1,6 @@
+getAuction:
+  handler: src/handlers/getAuction.handler
+  events:
+    - http:
+        method: GET
+        path: /auction/{id}

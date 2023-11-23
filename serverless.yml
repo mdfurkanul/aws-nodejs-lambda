@@ -1,0 +1,26 @@
+service: auction-services
+frameworkVersion: "3"
+plugins:
+  - serverless-bundle
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  memorySize: 256
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  timeout: 10
+  environment:
+    AUCTIONS_TABLE_NAME: ${self:custom.AuctionsTable.name}
+  iam:
+    role: ${file(./yml/iam/statements.yml)}
+
+resources: ${file(./yml/resources/main.yml):resources}
+functions: ${file(./yml/functions/main.yml):functions}
+
+custom:
+  AuctionsTable:
+    name: { Ref: AuctionsTable }
+    arn: { "Fn::GetAtt": ["AuctionsTable", "Arn"] }
+  bundle:
+    linting: false
