@@ -8,6 +8,8 @@ const client = new DynamoDBClient();
 async function createAuction(event, context) {
   const { title } = event.body;
   const now = new Date();
+  const ending_date = new Date();
+  ending_date.setHours(now.getHours() + 1);
   let response;
 
   const auction = {
@@ -26,6 +28,9 @@ async function createAuction(event, context) {
     },
     status: {
       S: "OPEN",
+    },
+    endingAt: {
+      S: ending_date.toISOString(),
     },
     createdAt: {
       S: now.toISOString(),

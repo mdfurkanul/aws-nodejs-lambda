@@ -9,3 +9,8 @@ statements:
       - dynamodb:Query
     Resource:
       - ${self:custom.AuctionsTable.arn}
+      - Fn::Join:
+          [
+            "/",
+            ["${self:custom.AuctionsTable.arn}", "index", "statusAndEndDate"],
+          ]

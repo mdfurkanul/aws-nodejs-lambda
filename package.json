@@ -14,6 +14,7 @@
     "@middy/event-normalizer": "^5.0.2",
     "@middy/http-error-handler": "^5.0.2",
     "@middy/http-json-body-parser": "^5.0.2",
+    "@middy/validator": "^5.0.3",
     "http-errors": "^2.0.0",
     "serverless": "^3.37.0",
     "uuid": "^9.0.1"

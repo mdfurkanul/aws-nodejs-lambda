@@ -3,3 +3,4 @@ functions:
   - ${file(./yml/functions/getAuctions.yml)}
   - ${file(./yml/functions/getAuction.yml)}
   - ${file(./yml/functions/placeBid.yml)}
+  - ${file(./yml/functions/processAuctions.yml)}
