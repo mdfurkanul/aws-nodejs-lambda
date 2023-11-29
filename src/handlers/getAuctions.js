@@ -1,7 +1,9 @@
 import { DynamoDBClient, QueryCommand } from "@aws-sdk/client-dynamodb";
 import createHttpError from "http-errors";
+import validatorMiddleware from "@middy/validator";
+import { transpileSchema } from "@middy/validator/transpile";
 import { getMiddleware } from "../lib/commonMiddleware";
-
+import getAuctionsSchema from "../lib/schemas/getAuctionsSchema";
 const client = new DynamoDBClient({});
 
 async function getAuctions(event, context) {
@@ -35,4 +37,12 @@ async function getAuctions(event, context) {
   };
 }
 
-export const handler = getMiddleware(getAuctions);
+export const handler = getMiddleware(getAuctions).use(
+  validatorMiddleware({
+    eventSchema: transpileSchema(getAuctionsSchema),
+    ajvOptions: {
+      useDefaults: true,
+      strict: false,
+    },
+  })
+);

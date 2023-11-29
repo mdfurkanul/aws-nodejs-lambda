@@ -1,7 +1,10 @@
 import { v4 as uuid } from "uuid";
 import { DynamoDBClient, PutItemCommand } from "@aws-sdk/client-dynamodb";
 import createHttpError from "http-errors";
+import validatorMiddleware from "@middy/validator";
+import { transpileSchema } from "@middy/validator/transpile";
 import { postMiddleWare } from "../lib/commonMiddleware";
+import createAuctionSchema from "../lib/schemas/createAuctionSchema";
 
 const client = new DynamoDBClient();
 
@@ -56,4 +59,11 @@ async function createAuction(event, context) {
   };
 }
 
-export const handler = postMiddleWare(createAuction);
+export const handler = postMiddleWare(createAuction).use(
+  validatorMiddleware({
+    eventSchema: transpileSchema(createAuctionSchema),
+    ajvOptions: {
+      strict: false,
+    },
+  })
+);

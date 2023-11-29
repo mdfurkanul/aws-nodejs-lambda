@@ -1,0 +1,60 @@
+/* Dashboard CSS Start */
+body {
+  background-color: #4945fd1c !important;
+}
+.sidebar-v2-location #sidebar-v2 .default-bg-color,
+.sidebar-v2-location #sidebar-v2.default-bg-color {
+  background: #4945fd !important;
+}
+.sidebar-v2-location #sidebar-v2 .hl_nav-header nav a,
+.sidebar-v2-location #sidebar-v2 .hl_nav-settings nav a {
+  opacity: 1 !important;
+}
+.hl_header .topmenu-nav a:hover {
+  border-bottom-width: 2px;
+  border-color: #4945fd !important;
+  border-bottom-style: solid;
+  color: #4945fd;
+}
+@media (min-width: 1280px) {
+  .sidebar-v2-location #sidebar-v2 #location-switcher-sidbar-v2 {
+    background-color: #09090952 !important;
+  }
+}
+.sidebar-v2-location #sidebar-v2 #globalSearchOpener,
+.sidebar-v2-location #sidebar-v2 #quickActions {
+  background-color: #09090952 !important;
+}
+
+.launchpad-item-container,
+#CalendarPage .n-config-provider {
+  box-shadow: 1px 0px 15px 8px #a559f930 !important;
+  border-radius: 5px;
+}
+iframe[name="payment-app"] {
+  background: #f2f7fa !important;
+}
+.sidebar-v2-location #sidebar-v2 .hl_collapse-button {
+  background: #4945fd !important;
+  color: #a559f9 !important;
+}
+
+.v2-open > #sidebar-v2::before {
+  background-image: url("https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/Mbwq6GIV2YZrh6E401Am/media/654e40540ad4d8d3dac3101e.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  content: "";
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100px;
+}
+.v2-open > #sidebar-v2 img.agency-logo {
+  display: none !important;
+}
+.v2-open > #sidebar-v2 .agency-logo-container {
+  height: 75px !important;
+}
+/* Dashboard CSS End */
