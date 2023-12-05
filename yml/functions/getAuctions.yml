@@ -4,3 +4,4 @@ getAuctions:
     - http:
         method: GET
         path: /auctions
+        authorizer: "${self:custom.authorizer}"

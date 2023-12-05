@@ -10,6 +10,7 @@ const client = new DynamoDBClient();
 
 async function createAuction(event, context) {
   const { title } = event.body;
+  const { email } = event.requestContext.authorizer;
   const now = new Date();
   const ending_date = new Date();
   ending_date.setHours(now.getHours() + 1);
@@ -21,6 +22,9 @@ async function createAuction(event, context) {
     },
     title: {
       S: title,
+    },
+    seller: {
+      S: email,
     },
     highestBid: {
       M: {

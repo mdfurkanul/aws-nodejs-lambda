@@ -11,8 +11,16 @@ const client = new DynamoDBClient();
 
 async function placeBid(event, context) {
   const { id } = event.pathParameters;
+  const { email } = event.requestContext.authorizer;
   const { amount } = event.body;
   const auction = await getAuctionByID(id);
+
+  if (auction.seller.S === auction.highestBid.M.bidder.S) {
+    throw new createHttpError.Forbidden(`The Seller Can't Bid!`);
+  }
+  if (email === auction.highestBid.M.bidder.S) {
+    throw new createHttpError.Forbidden(`You are already highest bidder!`);
+  }
   if (auction.status.S === "CLOSED") {
     throw new createHttpError.Forbidden(`The Auction is closed!`);
   }
@@ -21,6 +29,7 @@ async function placeBid(event, context) {
       `Your bid must be higer that  ${auction.highestBid.M.amount.N}!`
     );
   }
+
   let updatedAuction;
 
   const input = {
@@ -38,8 +47,12 @@ async function placeBid(event, context) {
       ":amount": {
         N: `${amount}`,
       },
+      ":bidder": {
+        S: email,
+      },
     },
-    UpdateExpression: "SET #highestBid.#amount = :amount",
+    UpdateExpression:
+      "SET #highestBid.#amount = :amount, #highestBid.bidder = :bidder",
     ReturnValues: "ALL_NEW",
   };
 

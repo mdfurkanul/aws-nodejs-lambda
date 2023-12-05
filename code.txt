@@ -1,0 +1,33 @@
+    <script
+      src="https://maps.googleapis.com/maps/api/js?libraries=places&region=US&language=EN&key=AIzaSyBhbBfy5skgCQplyLMnxyClYdF3X1GKTUA&ver=2.3"
+      defer
+    ></script>
+    <script>
+(function () {
+        		const pickUp = document.getElementById("3H4ems53OKUJkOH72pf0");
+                const dropOff = document.getElementById("8JJaHeiL1CFmJCHP0qRr");
+              	const options = {
+                  fields: ["formatted_address", "geometry", "name"],
+                  strictBounds: false,
+                };
+            	const autocompletePickUp = new google.maps.places.Autocomplete(pickUp, options);
+                const autocompleteDropOff = new google.maps.places.Autocomplete(dropOff, options);
+                autocompletePickUp.addListener( 'place_changed', disPatchPickUp );
+                autocompleteDropOff.addListener( 'place_changed', disPatctDropOff );
+                const event = new Event("input", { bubbles: true });
+                function disPatchPickUp(){
+                	pickUp.dispatchEvent(event);
+                }
+                function disPatctDropOff(){
+                	dropOff.dispatchEvent(event);
+                }
+                
+                setTimeout(function(){
+                	pickUp.classList = ['form-control'];
+                dropOff.classList = ['form-control'];
+                },1000);
+            
+})();
+    </script>
+
+    arn:aws:lambda:us-east-1:207323254230:function:auth-service-dev-auth

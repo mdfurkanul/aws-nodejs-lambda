@@ -1,0 +1,7 @@
+curl --location --request POST 'https://dev-w8owy7ycut6x7ixj.us.auth0.com/oauth/token' \                                                  
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'client_id=ny5tsUVV6Vxw2c9h3EcP7AOk1RQvv5Yc' \             
+--data-urlencode 'username=md@furkanul.com' \
+--data-urlencode 'password=QiEM-7ynrrSDqdn' \
+--data-urlencode 'grant_type=password' \
+--data-urlencode 'scope=openid'

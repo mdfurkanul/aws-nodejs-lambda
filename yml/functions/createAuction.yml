@@ -4,3 +4,4 @@ createAuction:
     - http:
         method: POST
         path: /createAuction
+        authorizer: "${self:custom.authorizer}"

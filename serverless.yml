@@ -19,6 +19,8 @@ resources: ${file(./yml/resources/main.yml):resources}
 functions: ${file(./yml/functions/main.yml):functions}
 
 custom:
+  accountId: { Ref: "AWS::AccountId" }
+  authorizer: arn:aws:lambda:${self:provider.region}:207323254230:function:auth-service-${self:provider.stage}-auth
   AuctionsTable:
     name: { Ref: AuctionsTable }
     arn: { "Fn::GetAtt": ["AuctionsTable", "Arn"] }
